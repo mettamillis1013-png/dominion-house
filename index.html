@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dominion House — Built Different</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black:   #080808;
+    --dark:    #0f0f0f;
+    --card:    #141414;
+    --border:  #2a2a2a;
+    --purple:  #7c3aed;
+    --purple2: #9d5cf6;
+    --chrome:  #c0c0c8;
+    --white:   #f0f0f0;
+    --muted:   #888;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 32px;
+    background: rgba(8,8,8,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.12em;
+    background: linear-gradient(135deg, #c0c0c8 0%, #7c3aed 60%, #c0c0c8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-cta {
+    background: var(--purple);
+    color: #fff !important;
+    padding: 8px 18px;
+    border-radius: 6px;
+  }
+
+  .nav-cta:hover { background: var(--purple2) !important; color: #fff !important; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 32px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(124,58,237,0.18) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--purple2);
+    margin-bottom: 16px;
+  }
+
+  .hero-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 10vw, 8rem);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    max-width: 780px;
+  }
+
+  .hero-headline .chrome {
+    background: linear-gradient(135deg, #e0e0e8 0%, #9d9db0 40%, #c0c0c8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-headline .purple {
+    color: var(--purple2);
+  }
+
+  .hero-sub {
+    margin-top: 24px;
+    font-size: 1rem;
+    color: var(--muted);
+    max-width: 480px;
+    line-height: 1.6;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 14px;
+    margin-top: 36px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--purple);
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover { background: var(--purple2); transform: translateY(-1px); }
+
+  .btn-ghost {
+    border: 1px solid var(--border);
+    color: var(--chrome);
+    padding: 14px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-ghost:hover { border-color: var(--purple); color: var(--white); }
+
+  .hero-tagline {
+    margin-top: 56px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #333;
+  }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 90px 32px; }
+
+  .section-eyebrow {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--purple2);
+    margin-bottom: 14px;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    margin-bottom: 48px;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── SERVICES ── */
+  #services { background: var(--dark); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+
+  .service-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 24px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .service-card:hover {
+    border-color: var(--purple);
+    transform: translateY(-3px);
+  }
+
+  .service-icon {
+    font-size: 1.4rem;
+    margin-bottom: 14px;
+  }
+
+  .service-name {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 6px;
+    color: var(--white);
+  }
+
+  .service-desc {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.55;
+    margin-bottom: 16px;
+  }
+
+  .service-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.06em;
+    color: var(--purple2);
+  }
+
+  .service-badge {
+    display: inline-block;
+    background: rgba(124,58,237,0.15);
+    border: 1px solid rgba(124,58,237,0.35);
+    color: var(--purple2);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-top: 10px;
+  }
+
+  /* ── PORTFOLIO ── */
+  #portfolio { background: var(--black); }
+
+  .portfolio-intro {
+    font-size: 0.9rem;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.6;
+    margin-bottom: 48px;
+  }
+
+  .portfolio-case {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    max-width: 900px;
+  }
+
+  .case-header {
+    padding: 28px 32px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .case-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--purple);
+    flex-shrink: 0;
+  }
+
+  .case-client {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--white);
+  }
+
+  .case-type {
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .case-tag {
+    margin-left: auto;
+    background: rgba(124,58,237,0.12);
+    border: 1px solid rgba(124,58,237,0.3);
+    color: var(--purple2);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 20px;
+  }
+
+  .case-screens {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+
+  .case-screen {
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .case-screen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    filter: brightness(0.92);
+    transition: filter 0.3s;
+  }
+
+  .case-screen:hover img { filter: brightness(1); }
+
+  .case-screen + .case-screen {
+    border-left: 1px solid var(--border);
+  }
+
+  .case-footer {
+    padding: 20px 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .case-detail {
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  .case-detail strong {
+    color: var(--white);
+    font-weight: 600;
+  }
+
+  .more-coming {
+    margin-top: 24px;
+    font-size: 0.78rem;
+    color: #444;
+    font-style: italic;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--dark); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    max-width: 900px;
+  }
+
+  .contact-left h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    letter-spacing: 0.06em;
+    margin-bottom: 12px;
+    line-height: 1;
+  }
+
+  .contact-left p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 28px;
+  }
+
+  .ig-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 20px;
+    text-decoration: none;
+    color: var(--white);
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: border-color 0.2s, background 0.2s;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  .ig-link:hover {
+    border-color: var(--purple);
+    background: rgba(124,58,237,0.08);
+  }
+
+  .ig-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 0.7rem;
+  }
+
+  .ig-handle { color: var(--purple2); font-size: 0.78rem; margin-left: auto; }
+
+  /* form */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .contact-form input,
+  .contact-form textarea,
+  .contact-form select {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 13px 16px;
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+
+  .contact-form select option { background: #1a1a1a; }
+
+  .contact-form input:focus,
+  .contact-form textarea:focus,
+  .contact-form select:focus {
+    border-color: var(--purple);
+  }
+
+  .contact-form textarea { resize: vertical; min-height: 110px; }
+
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder {
+    color: #444;
+  }
+
+  .form-submit {
+    background: var(--purple);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 14px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 0.88rem;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .form-submit:hover { background: var(--purple2); }
+
+  .form-note {
+    font-size: 0.72rem;
+    color: #444;
+    text-align: center;
+  }
+
+  /* success */
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 32px;
+    color: var(--purple2);
+    font-weight: 600;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 32px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: gap;
+    gap: 12px;
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.12em;
+    color: var(--chrome);
+  }
+
+  .footer-tagline {
+    font-size: 0.68rem;
+    color: #333;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 680px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none; }
+    #hero { padding: 100px 20px 60px; }
+    section { padding: 64px 20px; }
+    .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+    .case-screens { grid-template-columns: 1fr; }
+    .case-screen + .case-screen { border-left: none; border-top: 1px solid var(--border); }
+    footer { flex-direction: column; align-items: flex-start; padding: 24px 20px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">Dominion House</span>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Work</a></li>
+    <li><a href="#contact" class="nav-cta">Start a Project</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <p class="hero-eyebrow">Web Design &nbsp;·&nbsp; Brand Visuals &nbsp;·&nbsp; Motion</p>
+  <h1 class="hero-headline">
+    <span class="chrome">Built</span><br>
+    <span class="purple">Different.</span>
+  </h1>
+  <p class="hero-sub">We build landing pages, brand visuals, and motion content for artists, food businesses, entrepreneurs, and creators who are serious about standing out.</p>
+  <div class="hero-buttons">
+    <a href="#contact" class="btn-primary">Start a Project</a>
+    <a href="#portfolio" class="btn-ghost">See the Work</a>
+  </div>
+  <p class="hero-tagline">Built from the block. Designed for legacy.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- SERVICES -->
+<section id="services">
+  <p class="section-eyebrow">What We Offer</p>
+  <h2 class="section-title">Starter Deals</h2>
+  <div class="services-grid">
+
+    <div class="service-card">
+      <div class="service-icon">🎲</div>
+      <div class="service-name">3D Logo Render / Visual</div>
+      <div class="service-desc">Clean promo visual for IG, brand pages, or cover art.</div>
+      <div class="service-price">$40 – $75</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🎬</div>
+      <div class="service-name">Short Motion Clip</div>
+      <div class="service-desc">5–15 sec animated logo or promo clip built for social.</div>
+      <div class="service-price">$75 – $150</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🖥️</div>
+      <div class="service-name">Simple Landing Page</div>
+      <div class="service-desc">One-page site with your core sections — live and ready to share.</div>
+      <div class="service-price">$100 – $250</div>
+      <div class="service-badge">Most Popular</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">✍️</div>
+      <div class="service-name">Brand Cleanup Pack</div>
+      <div class="service-desc">Bio, captions, wording, and page direction tightened up.</div>
+      <div class="service-price">$50 – $100</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">📦</div>
+      <div class="service-name">Bundle Deal</div>
+      <div class="service-desc">Flyer + short clip + landing page concept. Everything in one move.</div>
+      <div class="service-price">$150 – $300</div>
+      <div class="service-badge">Best Value</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <p class="section-eyebrow">Client Work</p>
+  <h2 class="section-title">The Proof</h2>
+  <p class="portfolio-intro">Real projects. Real clients. Every piece is built from scratch to fit the business — not a template.</p>
+
+  <div class="portfolio-case">
+    <div class="case-header">
+      <div class="case-dot"></div>
+      <div>
+        <div class="case-client">Jay's Fry Guy</div>
+        <div class="case-type">Landing Page &nbsp;·&nbsp; New Haven, CT</div>
+      </div>
+      <span class="case-tag">Landing Page</span>
+    </div>
+    <div class="case-screens">
+      <div class="case-screen">
+        <img src="jays-homepage.PNG" alt="Jay's Fry Guy hero section" />
+      </div>
+      <div class="case-screen">
+        <img src="jays-menu.PNG" alt="Jay's Fry Guy menu section" />
+      </div>
+      <div class="case-screen">
+        <img src="jays-specials.PNG" alt="Jay's Fry Guy specials section" />
+      </div>
+    </div>
+    <div class="case-footer">
+      <span class="case-detail"><strong>Deliverable:</strong> Full landing page concept</span>
+      <span class="case-detail"><strong>Includes:</strong> Hero, Menu, Specials, Order CTA</span>
+    </div>
+  </div>
+
+  <p class="more-coming">More work dropping soon.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-eyebrow">Let's Work</p>
+  <h2 class="section-title">Start a Project</h2>
+  <div class="contact-grid">
+
+    <div class="contact-left">
+      <h3>DM or<br>Fill the Form.</h3>
+      <p>Drop a message on Instagram or fill out the form and I'll get back to you within 24 hours. No fluff, no runaround — just real work.</p>
+
+      <a href="https://instagram.com/dominionhouseofficial" target="_blank" class="ig-link">
+        <span class="ig-icon">📷</span>
+        <span>@dominionhouseofficial</span>
+        <span class="ig-handle">DM us →</span>
+      </a>
+      <a href="https://instagram.com/makemorebag" target="_blank" class="ig-link">
+        <span class="ig-icon">📷</span>
+        <span>@makemorebag</span>
+        <span class="ig-handle">Personal →</span>
+      </a>
+    </div>
+
+    <div class="contact-right">
+      <div class="contact-form" id="contactForm">
+        <input type="text" id="nameInput" placeholder="Your name" />
+        <input type="text" id="businessInput" placeholder="Business or brand name (optional)" />
+        <input type="text" id="contactInput" placeholder="Best way to reach you (IG, email, phone)" />
+        <select id="serviceSelect">
+          <option value="" disabled selected>What do you need?</option>
+          <option>3D Logo Render / Visual — $40–$75</option>
+          <option>Short Motion Clip — $75–$150</option>
+          <option>Simple Landing Page — $100–$250</option>
+          <option>Brand Cleanup Pack — $50–$100</option>
+          <option>Bundle Deal — $150–$300</option>
+          <option>Not sure yet — let's talk</option>
+        </select>
+        <textarea id="messageInput" placeholder="Tell me what you're building and what you need..."></textarea>
+        <button class="form-submit" onclick="submitForm()">Send It →</button>
+        <p class="form-note">I usually respond within 24 hours.</p>
+      </div>
+      <div class="form-success" id="formSuccess">
+        ✓ Message received. I'll be in touch soon.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Dominion House</span>
+  <span class="footer-tagline">Built from the block. Designed for legacy.</span>
+</footer>
+
+<script>
+  function submitForm() {
+    const name = document.getElementById('nameInput').value.trim();
+    const contact = document.getElementById('contactInput').value.trim();
+    const service = document.getElementById('serviceSelect').value;
+    const message = document.getElementById('messageInput').value.trim();
+
+    if (!name || !contact) {
+      alert('Please fill in your name and how to reach you.');
+      return;
+    }
+
+    // Build mailto as a functional fallback
+    const subject = encodeURIComponent('New Project Inquiry — Dominion House');
+    const body = encodeURIComponent(
+      `Name: ${name}\nBusiness: ${document.getElementById('businessInput').value}\nContact: ${contact}\nService: ${service}\nMessage: ${message}`
+    );
+    window.location.href = `mailto:dominion.houseofficial@gmail.com?subject=${subject}&body=${body}`;
+
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }
+
+  // Smooth active nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 80) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? '#f0f0f0' : '';
+    });
+  });
+</script>
+
+</body>
+</html>
