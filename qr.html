@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dominion House — Connect</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black:   #080808;
+    --dark:    #0f0f0f;
+    --card:    #141414;
+    --border:  #2a2a2a;
+    --purple:  #7c3aed;
+    --purple2: #9d5cf6;
+    --chrome:  #c0c0c8;
+    --white:   #f0f0f0;
+    --muted:   #666;
+  }
+
+  html, body {
+    min-height: 100vh;
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    overflow-x: hidden;
+  }
+
+  /* ── BACKGROUND GLOW ── */
+  .bg-glow {
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(124,58,237,0.12) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    width: 100%;
+    max-width: 420px;
+  }
+
+  /* ── 3D ROTATING LOGO ── */
+  .logo-stage {
+    width: 160px;
+    height: 160px;
+    perspective: 800px;
+    margin-bottom: 28px;
+  }
+
+  .logo-3d {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    animation: rotate3d 8s ease-in-out infinite;
+    position: relative;
+  }
+
+  @keyframes rotate3d {
+    0%   { transform: rotateY(0deg) rotateX(0deg); }
+    25%  { transform: rotateY(20deg) rotateX(8deg); }
+    50%  { transform: rotateY(0deg) rotateX(0deg); }
+    75%  { transform: rotateY(-20deg) rotateX(-8deg); }
+    100% { transform: rotateY(0deg) rotateX(0deg); }
+  }
+
+  .logo-3d img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 24px rgba(124,58,237,0.6)) drop-shadow(0 0 48px rgba(124,58,237,0.3));
+    border-radius: 50%;
+  }
+
+  /* ── BRAND NAME ── */
+  .brand-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem;
+    letter-spacing: 0.12em;
+    background: linear-gradient(135deg, #e0e0e8 0%, #9d9db0 40%, #c0c0c8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 6px;
+    text-align: center;
+  }
+
+  .brand-tagline {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--purple2);
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  /* ── QR CARDS ── */
+  .qr-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .qr-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: border-color 0.3s, transform 0.2s;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .qr-card:hover {
+    border-color: var(--purple);
+    transform: translateY(-2px);
+  }
+
+  .qr-box {
+    background: #fff;
+    border-radius: 10px;
+    padding: 8px;
+    flex-shrink: 0;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .qr-box canvas,
+  .qr-box img {
+    width: 74px !important;
+    height: 74px !important;
+  }
+
+  .qr-info {
+    flex: 1;
+  }
+
+  .qr-label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--purple2);
+    margin-bottom: 6px;
+  }
+
+  .qr-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.06em;
+    color: var(--white);
+    margin-bottom: 4px;
+    line-height: 1;
+  }
+
+  .qr-url {
+    font-size: 0.72rem;
+    color: var(--muted);
+    word-break: break-all;
+  }
+
+  .qr-arrow {
+    font-size: 1.2rem;
+    color: var(--purple2);
+    flex-shrink: 0;
+  }
+
+  /* ── DIVIDER ── */
+  .or-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--muted);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    width: 100%;
+  }
+
+  .or-divider::before,
+  .or-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── FOOTER ── */
+  .page-footer {
+    margin-top: 40px;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #2a2a2a;
+    text-align: center;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .logo-3d { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-glow"></div>
+
+<div class="content">
+
+  <!-- 3D ROTATING LOGO -->
+  <div class="logo-stage">
+    <div class="logo-3d">
+      <img src="dh-logo.PNG" alt="Dominion House Logo" />
+    </div>
+  </div>
+
+  <h1 class="brand-name">Dominion House</h1>
+  <p class="brand-tagline">Built from the block. Designed for legacy.</p>
+
+  <!-- QR CARDS -->
+  <div class="qr-cards">
+
+    <!-- WEBSITE QR -->
+    <a class="qr-card" href="https://mettamillis1013-png.github.io/dominion-house/" target="_blank">
+      <div class="qr-box" id="qr-site"></div>
+      <div class="qr-info">
+        <div class="qr-label">Official Website</div>
+        <div class="qr-title">Visit the Site</div>
+        <div class="qr-url">dominionhouse.github.io</div>
+      </div>
+      <div class="qr-arrow">→</div>
+    </a>
+
+    <div class="or-divider">or</div>
+
+    <!-- INSTAGRAM QR -->
+    <a class="qr-card" href="https://instagram.com/dominionhouseofficial" target="_blank">
+      <div class="qr-box" id="qr-ig"></div>
+      <div class="qr-info">
+        <div class="qr-label">Instagram</div>
+        <div class="qr-title">@dominionhouseofficial</div>
+        <div class="qr-url">instagram.com/dominionhouseofficial</div>
+      </div>
+      <div class="qr-arrow">→</div>
+    </a>
+
+  </div>
+
+  <p class="page-footer">Built different.</p>
+
+</div>
+
+<script>
+  // Generate QR codes
+  new QRCode(document.getElementById("qr-site"), {
+    text: "https://mettamillis1013-png.github.io/dominion-house/",
+    width: 74,
+    height: 74,
+    colorDark: "#000000",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.H
+  });
+
+  new QRCode(document.getElementById("qr-ig"), {
+    text: "https://instagram.com/dominionhouseofficial",
+    width: 74,
+    height: 74,
+    colorDark: "#000000",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.H
+  });
+</script>
+
+</body>
+</html>
