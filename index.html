@@ -539,10 +539,70 @@
     text-transform: uppercase;
   }
 
+  /* ── HAMBURGER ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 6px;
+    background: none;
+    border: none;
+    z-index: 200;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--chrome);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(8,8,8,0.97);
+    z-index: 150;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    backdrop-filter: blur(12px);
+  }
+
+  .mobile-menu.open { display: flex; }
+
+  .mobile-menu a {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.4rem;
+    letter-spacing: 0.1em;
+    color: var(--chrome);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .mobile-menu a:hover { color: var(--purple2); }
+
+  .mobile-menu .mobile-cta {
+    background: var(--purple);
+    color: #fff !important;
+    padding: 14px 36px;
+    border-radius: 8px;
+    font-size: 1.8rem;
+  }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 680px) {
     nav { padding: 14px 20px; }
     .nav-links { display: none; }
+    .hamburger { display: flex; }
     #hero { padding: 100px 20px 60px; }
     section { padding: 64px 20px; }
     .contact-grid { grid-template-columns: 1fr; gap: 32px; }
@@ -565,6 +625,9 @@
     <span class="nav-logo">Dominion House</span>
   </a>
   <a href="qr.html" style="background:rgba(124,58,237,0.15);border:1px solid rgba(124,58,237,0.4);color:#9d5cf6;padding:8px 16px;border-radius:6px;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-decoration:none;display:block;">Connect ↗</a>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
   <ul class="nav-links">
     <li><a href="qr.html">Connect</a></li>
     <li><a href="#services">Services</a></li>
@@ -572,6 +635,14 @@
     <li><a href="#contact" class="nav-cta">Start a Project</a></li>
   </ul>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="qr.html" onclick="toggleMenu()">Connect</a>
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#portfolio" onclick="toggleMenu()">Work</a>
+  <a href="#contact" class="mobile-cta" onclick="toggleMenu()">Start a Project</a>
+</div>
 
 <!-- HERO -->
 <section id="hero">
@@ -752,6 +823,14 @@
 
     document.getElementById('contactForm').style.display = 'none';
     document.getElementById('formSuccess').style.display = 'block';
+  }
+
+  function toggleMenu() {
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('mobileMenu');
+    hamburger.classList.toggle('open');
+    menu.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
   }
 
   // Smooth active nav highlight
