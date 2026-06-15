@@ -387,6 +387,316 @@
     letter-spacing: 0.05em;
   }
 
+  /* ── DOMIEN LUXE COMING SOON ── */
+  .domien-luxe-block {
+    margin-top: 48px;
+    max-width: 900px;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #06060a;
+    border: 1px solid rgba(124,58,237,0.25);
+  }
+
+  .dl-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 40%, rgba(124,58,237,0.13) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 70%, rgba(80,20,160,0.10) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  /* Subtle stitch/barbed wire texture lines */
+  .dl-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(124,58,237,0.04) 39px, rgba(124,58,237,0.04) 40px),
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(124,58,237,0.03) 39px, rgba(124,58,237,0.03) 40px);
+    pointer-events: none;
+  }
+
+  .dl-inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    min-height: 420px;
+  }
+
+  .dl-left {
+    padding: 48px 40px 48px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 1px solid rgba(124,58,237,0.15);
+  }
+
+  .dl-client-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(124,58,237,0.12);
+    border: 1px solid rgba(124,58,237,0.35);
+    color: #9d5cf6;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 20px;
+    margin-bottom: 28px;
+    width: fit-content;
+  }
+
+  .dl-client-tag::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #9d5cf6;
+    animation: dl-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes dl-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  .dl-brand-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    letter-spacing: 0.08em;
+    line-height: 0.95;
+    margin-bottom: 6px;
+    background: linear-gradient(135deg, #d0d0dc 0%, #a0a0b8 40%, #c0c0cc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .dl-brand-sub {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    letter-spacing: 0.35em;
+    color: #7c3aed;
+    margin-bottom: 24px;
+  }
+
+  .dl-desc {
+    font-size: 0.84rem;
+    color: #666;
+    line-height: 1.65;
+    max-width: 320px;
+    margin-bottom: 32px;
+  }
+
+  .dl-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 36px;
+  }
+
+  .dl-detail-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.75rem;
+  }
+
+  .dl-detail-label {
+    color: #444;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 700;
+    min-width: 80px;
+  }
+
+  .dl-detail-val {
+    color: #888;
+  }
+
+  .dl-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(124,58,237,0.15);
+    border: 1px solid rgba(124,58,237,0.4);
+    color: #9d5cf6;
+    padding: 11px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+    width: fit-content;
+  }
+
+  .dl-cta:hover {
+    background: rgba(124,58,237,0.28);
+    border-color: rgba(157,92,246,0.7);
+    color: #c084fc;
+  }
+
+  /* Right side – logo showcase */
+  .dl-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .dl-logo-showcase {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  /* SVG heron logo recreation */
+  .dl-logo-svg-wrap {
+    width: 220px;
+    height: 220px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .dl-logo-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(124,58,237,0.2);
+    animation: dl-spin 20s linear infinite;
+  }
+
+  .dl-logo-ring::before {
+    content: '';
+    position: absolute;
+    top: -3px; left: 50%;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #7c3aed;
+    transform: translateX(-50%);
+  }
+
+  @keyframes dl-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .dl-logo-inner {
+    text-align: center;
+    z-index: 1;
+  }
+
+  /* DL monogram */
+  .dl-monogram {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5.5rem;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    background: linear-gradient(160deg, #b0b0c4 0%, #7c3aed 45%, #9d5cf6 70%, #c0c0cc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+  }
+
+  .dl-monogram-sub {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.4em;
+    color: #7c3aed;
+    margin-top: 2px;
+  }
+
+  /* Vertical lines decoration (echoing the brand's "pillar" motif) */
+  .dl-pillars {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 5px;
+    height: 50px;
+    align-items: flex-end;
+    opacity: 0.35;
+  }
+
+  .dl-pillar {
+    width: 4px;
+    background: linear-gradient(to bottom, #7c3aed, transparent);
+    border-radius: 2px 2px 0 0;
+  }
+
+  .dl-diamond {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(124,58,237,0.3);
+  }
+
+  /* Stitch dots on border */
+  .dl-stitch-top {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: repeating-linear-gradient(
+      90deg,
+      rgba(124,58,237,0.5) 0px, rgba(124,58,237,0.5) 6px,
+      transparent 6px, transparent 12px
+    );
+  }
+
+  .dl-stitch-bottom {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: repeating-linear-gradient(
+      90deg,
+      rgba(124,58,237,0.5) 0px, rgba(124,58,237,0.5) 6px,
+      transparent 6px, transparent 12px
+    );
+  }
+
+  .dl-coming-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(124,58,237,0.15);
+    border: 1px solid rgba(124,58,237,0.4);
+    color: #9d5cf6;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+
+  @media (max-width: 680px) {
+    .dl-inner { grid-template-columns: 1fr; }
+    .dl-left { padding: 36px 24px; border-right: none; border-bottom: 1px solid rgba(124,58,237,0.15); }
+    .dl-right { padding: 32px 24px; }
+    .dl-logo-svg-wrap { width: 160px; height: 160px; }
+    .dl-monogram { font-size: 4rem; }
+  }
+
   /* ── CONTACT ── */
   #contact { background: var(--dark); }
 
@@ -615,122 +925,9 @@
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; animation: none !important; }
   }
-
-  /* ── WEB / GRID BACKGROUND ── */
-  #bg-canvas {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 0;
-    pointer-events: none;
-  }
-
-  #bg-grid {
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(107,33,232,0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(107,33,232,0.06) 1px, transparent 1px);
-    background-size: 40px 40px;
-    z-index: 0;
-    pointer-events: none;
-  }
-
-  /* make sure all content sits above the background */
-  nav, section, footer, .divider, .mobile-menu {
-    position: relative;
-    z-index: 1;
-  }
-
-
-  /* ── ABOUT ── */
-  #about {
-    background: var(--black);
-  }
-
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 64px;
-    align-items: start;
-  }
-
-  .about-body {
-    font-size: 0.95rem;
-    color: var(--muted);
-    line-height: 1.8;
-  }
-
-  .about-body p { margin-bottom: 18px; }
-  .about-body p:last-child { margin-bottom: 0; }
-
-  .about-signature {
-    margin-top: 28px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--purple2);
-  }
-
-  .about-pillars {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .pillar {
-    border-left: 2px solid var(--purple);
-    padding-left: 20px;
-  }
-
-  .pillar-title {
-    font-weight: 700;
-    font-size: 0.85rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--white);
-    margin-bottom: 4px;
-  }
-
-  .pillar-desc {
-    font-size: 0.82rem;
-    color: var(--muted);
-    line-height: 1.55;
-  }
-
-  /* ── COMING SOON ── */
-  #coming-soon {
-    background: var(--dark);
-    text-align: center;
-  }
-
-  .coming-body {
-    font-size: 0.95rem;
-    color: var(--muted);
-    max-width: 540px;
-    margin: 0 auto 36px;
-    line-height: 1.7;
-  }
-
-  @media (max-width: 680px) {
-    .about-grid { grid-template-columns: 1fr; gap: 40px; }
-  }
-
 </style>
 </head>
 <body>
-<script>
-  // Only show intro once per visit
-  if (!sessionStorage.getItem('introSeen')) {
-    sessionStorage.setItem('introSeen', 'true');
-    window.location.href = 'dominion-house-intro-final.html';
-  }
-</script>
-
-<!-- Background web + grid -->
-<div id="bg-grid"></div>
-<canvas id="bg-canvas"></canvas>
 
 <!-- NAV -->
 <nav>
@@ -744,7 +941,6 @@
   </button>
   <ul class="nav-links">
     <li><a href="qr.html">Connect</a></li>
-    <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#portfolio">Work</a></li>
     <li><a href="#contact" class="nav-cta">Start a Project</a></li>
@@ -754,7 +950,6 @@
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="qr.html" onclick="toggleMenu()">Connect</a>
-  <a href="#about" onclick="toggleMenu()">About</a>
   <a href="#services" onclick="toggleMenu()">Services</a>
   <a href="#portfolio" onclick="toggleMenu()">Work</a>
   <a href="#contact" class="mobile-cta" onclick="toggleMenu()">Start a Project</a>
@@ -764,61 +959,25 @@
 <section id="hero">
   <div class="hero-glow"></div>
   <img src="dh-logo.PNG" alt="Dominion House" style="width:100px;height:100px;object-fit:contain;margin-bottom:24px;" />
-  <p class="hero-eyebrow">Hartford, CT &nbsp;·&nbsp; Brand &nbsp;·&nbsp; Web &nbsp;·&nbsp; Clothing &nbsp;·&nbsp; Tech</p>
+  <p class="hero-eyebrow">Web Design &nbsp;·&nbsp; Brand Visuals &nbsp;·&nbsp; Motion</p>
   <h1 class="hero-headline">
-    <span class="chrome">Built On</span><br>
-    <span class="purple">Ownership.</span>
+    <span class="chrome">Built</span><br>
+    <span class="purple">Different.</span>
   </h1>
-  <p class="hero-sub">Dominion House isn't just a brand — it's a house with many rooms. Web services, clothing, content, and tech all under one roof. Built by someone from the bottom, for everyone trying to get up.</p>
+  <p class="hero-sub">We build landing pages, brand visuals, and motion content for artists, food businesses, entrepreneurs, and creators who are serious about standing out.</p>
   <div class="hero-buttons">
     <a href="#contact" class="btn-primary">Start a Project</a>
     <a href="#portfolio" class="btn-ghost">See the Work</a>
   </div>
-  <p class="hero-tagline">Patient. Precise. Confident. That's the standard.</p>
-</section>
-
-
-<!-- ABOUT -->
-<section id="about">
-  <p class="section-eyebrow">Who We Are</p>
-  <h2 class="section-title">The House Behind the Work</h2>
-  <div class="about-grid">
-    <div class="about-body">
-      <p>My name is Michael. I'm 30, I'm from Hartford, and I built Dominion House because I wanted to be the resource I wish I had growing up.</p>
-      <p>When you work with me, you're not a client — you're family. Because when you win, you're literally helping feed mine. That's not a slogan. That's real.</p>
-      <p>Dominion House is built on one word: ownership. Own your brand. Own your mistakes. Own your future. The Blue Heron is our symbol because it's everything we aim to be — patient, precise, confident, and unbothered by what's around it.</p>
-      <p>I'm not building this to be famous. I'm building this to be free — and to bring as many people with me as I can. From the kid in the hood who thought school wasn't for him, to the entrepreneur who's ready to go bigger. If you're trying to be better, there's a room in this house for you.</p>
-      <p>The vision goes further than web services and clothing. One day Dominion House gives back — free clothes from the brand, marketing help for people learning new skills, resources for people who've hit rock bottom. Because I've been there too.</p>
-      <p>This is just the beginning.</p>
-      <div class="about-signature">— Michael, Founder</div>
-    </div>
-    <div class="about-pillars">
-      <div class="pillar">
-        <div class="pillar-title">Ownership</div>
-        <div class="pillar-desc">Own your brand, own your mistakes, own your future. Everything we build is rooted in that principle.</div>
-      </div>
-      <div class="pillar">
-        <div class="pillar-title">Patience</div>
-        <div class="pillar-desc">The Blue Heron doesn't rush. It moves with precision and strikes when ready. That's how we operate.</div>
-      </div>
-      <div class="pillar">
-        <div class="pillar-title">Family</div>
-        <div class="pillar-desc">Every client is treated like they're in the house. Your win is our win. We don't do transactional.</div>
-      </div>
-      <div class="pillar">
-        <div class="pillar-title">Purpose</div>
-        <div class="pillar-desc">Built for people from the bottom who are ready to rise. And one day, to give back to those still there.</div>
-      </div>
-    </div>
-  </div>
+  <p class="hero-tagline">Built from the block. Designed for legacy.</p>
 </section>
 
 <div class="divider"></div>
 
 <!-- SERVICES -->
 <section id="services">
-  <p class="section-eyebrow">What We Build</p>
-  <h2 class="section-title">The Work</h2>
+  <p class="section-eyebrow">What We Offer</p>
+  <h2 class="section-title">Starter Deals</h2>
   <div class="services-grid">
 
     <div class="service-card">
@@ -865,9 +1024,9 @@
 
 <!-- PORTFOLIO -->
 <section id="portfolio">
-  <p class="section-eyebrow">Family Work</p>
+  <p class="section-eyebrow">Client Work</p>
   <h2 class="section-title">The Proof</h2>
-  <p class="portfolio-intro">Every client that comes through Dominion House is treated like family. These are real businesses, real people, real results — nothing templated, nothing generic.</p>
+  <p class="portfolio-intro">Real projects. Real clients. Every piece is built from scratch to fit the business — not a template.</p>
 
   <div class="portfolio-case">
     <div class="case-header">
@@ -896,19 +1055,81 @@
   </div>
 
   <p class="more-coming">More work dropping soon.</p>
+
+  <!-- DOMIEN LUXE -->
+  <div class="domien-luxe-block">
+    <div class="dl-bg"></div>
+    <div class="dl-stitch-top"></div>
+    <div class="dl-stitch-bottom"></div>
+    <span class="dl-coming-badge">Coming Soon</span>
+
+    <div class="dl-inner">
+      <!-- LEFT: info -->
+      <div class="dl-left">
+        <div class="dl-client-tag">Client Project</div>
+        <div class="dl-brand-name">Domien</div>
+        <div class="dl-brand-sub">— Luxe —</div>
+        <p class="dl-desc">
+          A luxury streetwear brand built on craft and identity. Full digital presence in the works — coming soon.
+        </p>
+        <div class="dl-details">
+          <div class="dl-detail-row">
+            <span class="dl-detail-label">Type</span>
+            <span class="dl-detail-val">Brand Identity · E-commerce</span>
+          </div>
+          <div class="dl-detail-row">
+            <span class="dl-detail-label">Status</span>
+            <span class="dl-detail-val">In development</span>
+          </div>
+          <div class="dl-detail-row">
+            <span class="dl-detail-label">Deliverable</span>
+            <span class="dl-detail-val">Full site + brand visuals</span>
+          </div>
+        </div>
+        <a href="#contact" class="dl-cta">Work with us ↗</a>
+      </div>
+
+      <!-- RIGHT: logo showcase -->
+      <div class="dl-right">
+        <div class="dl-logo-showcase">
+          <!-- Pillar decoration (echoing brand motif) -->
+          <div class="dl-pillars">
+            <div class="dl-pillar" style="height:45px;background:linear-gradient(to bottom,#7c3aed,transparent)"></div>
+            <div class="dl-pillar" style="height:30px;background:linear-gradient(to bottom,#9d5cf6,transparent)"></div>
+            <div class="dl-pillar" style="height:50px;background:linear-gradient(to bottom,#5b21b6,transparent)"></div>
+          </div>
+
+          <div class="dl-logo-svg-wrap">
+            <div class="dl-logo-ring"></div>
+            <div class="dl-logo-inner">
+              <div class="dl-monogram">DL</div>
+              <div class="dl-monogram-sub">DOMIEN LUXE</div>
+            </div>
+          </div>
+
+          <!-- Diamond shape at bottom (from logo) -->
+          <div style="position:relative;width:60px;height:60px;display:flex;align-items:center;justify-content:center;">
+            <div class="dl-diamond"></div>
+            <span style="font-family:'Bebas Neue',sans-serif;font-size:0.6rem;letter-spacing:0.25em;color:#555;z-index:1;">LUXE</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </section>
 
 <div class="divider"></div>
 
 <!-- CONTACT -->
 <section id="contact">
-  <p class="section-eyebrow">Join the Family</p>
+  <p class="section-eyebrow">Let's Work</p>
   <h2 class="section-title">Start a Project</h2>
   <div class="contact-grid">
 
     <div class="contact-left">
       <h3>DM or<br>Fill the Form.</h3>
-      <p>Whether you're just getting started or ready to level up — reach out. I respond within 24 hours, no middleman, no runaround. You talk to me directly.</p>
+      <p>Drop a message on Instagram or fill out the form and I'll get back to you within 24 hours. No fluff, no runaround — just real work.</p>
 
       <a href="https://instagram.com/dominionhouseofficial" target="_blank" class="ig-link">
         <span class="ig-icon">📷</span>
@@ -948,21 +1169,10 @@
   </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- COMING SOON -->
-<section id="coming-soon">
-  <p class="section-eyebrow">What's Coming</p>
-  <h2 class="section-title">More Rooms.<br>More Moves.</h2>
-  <p class="coming-body">Dominion House is more than a web agency. Dominion Luxe clothing, original animated content, and apps built in-house are all in development. This is just the ground floor.</p>
-  <a href="https://instagram.com/dominionhouseofficial" target="_blank" class="btn-primary">Stay Connected →</a>
-</section>
-
-
 <!-- FOOTER -->
 <footer>
   <span class="footer-logo">Dominion House</span>
-  <span class="footer-tagline">Built from the block. Designed for legacy. &nbsp;·&nbsp; Hartford, CT &nbsp;·&nbsp; Ownership is everything.</span>
+  <span class="footer-tagline">Built from the block. Designed for legacy.</span>
 </footer>
 
 <script>
@@ -1009,75 +1219,6 @@
       a.style.color = a.getAttribute('href') === '#' + current ? '#f0f0f0' : '';
     });
   });
-</script>
-
-
-<script>
-  /* ── SPIDER WEB BACKGROUND ── */
-  const bgCanvas = document.getElementById('bg-canvas');
-  const bgCtx = bgCanvas.getContext('2d');
-  let bW, bH, bgNodes = [];
-
-  function bgResize() {
-    bW = bgCanvas.width  = window.innerWidth;
-    bH = bgCanvas.height = window.innerHeight;
-  }
-  bgResize();
-  window.addEventListener('resize', bgResize);
-
-  function createBgNodes(count) {
-    bgNodes = [];
-    for (let i = 0; i < count; i++) {
-      bgNodes.push({
-        x: Math.random() * bW,
-        y: Math.random() * bH,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        r: Math.random() * 1.4 + 0.4,
-        pulse: Math.random() * Math.PI * 2
-      });
-    }
-  }
-  createBgNodes(60);
-
-  function drawBgWeb() {
-    bgCtx.clearRect(0, 0, bW, bH);
-
-    bgNodes.forEach(n => {
-      n.x += n.vx; n.y += n.vy;
-      n.pulse += 0.015;
-      if (n.x < 0 || n.x > bW) n.vx *= -1;
-      if (n.y < 0 || n.y > bH) n.vy *= -1;
-    });
-
-    for (let i = 0; i < bgNodes.length; i++) {
-      for (let j = i + 1; j < bgNodes.length; j++) {
-        const dx = bgNodes[j].x - bgNodes[i].x;
-        const dy = bgNodes[j].y - bgNodes[i].y;
-        const dist = Math.sqrt(dx*dx + dy*dy);
-        if (dist < 130) {
-          const alpha = (1 - dist / 130) * 0.25;
-          bgCtx.beginPath();
-          bgCtx.strokeStyle = `rgba(108, 33, 232, ${alpha})`;
-          bgCtx.lineWidth = 0.5;
-          bgCtx.moveTo(bgNodes[i].x, bgNodes[i].y);
-          bgCtx.lineTo(bgNodes[j].x, bgNodes[j].y);
-          bgCtx.stroke();
-        }
-      }
-    }
-
-    bgNodes.forEach(n => {
-      const p = (Math.sin(n.pulse) * 0.5 + 0.5);
-      bgCtx.beginPath();
-      bgCtx.arc(n.x, n.y, n.r + p * 0.6, 0, Math.PI * 2);
-      bgCtx.fillStyle = `rgba(157, 95, 245, 0.5)`;
-      bgCtx.fill();
-    });
-
-    requestAnimationFrame(drawBgWeb);
-  }
-  drawBgWeb();
 </script>
 
 </body>
