@@ -23,6 +23,7 @@
   html { scroll-behavior: smooth; }
 
   body {
+
     background: var(--black);
     color: var(--white);
     font-family: 'Inter', sans-serif;
@@ -616,7 +617,15 @@
   }
 </style>
 </head>
-<body>
+<body 
+<script>
+//Only show intro once per visit
+  If (sessionStorage.getItem('introSeen')) {
+    sessionStorage.setItem('introSeen', 'true');
+    window.location.href = 'dominion-house-intro.html';
+  }>
+</script>
+ >
 
 <!-- NAV -->
 <nav>
