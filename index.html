@@ -929,6 +929,14 @@
 </head>
 <body>
 
+<script>
+  // Show splash intro once per browser session — skip on return visits
+  if (!sessionStorage.getItem('introSeen')) {
+    sessionStorage.setItem('introSeen', 'true');
+    window.location.replace('dominion-house-intro-final.html');
+  }
+</script>
+
 <!-- NAV -->
 <nav>
   <a href="#hero" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
