@@ -210,6 +210,116 @@
     background: var(--border);
   }
 
+  /* ── ABOUT ── */
+  #about { background: var(--black); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    max-width: 900px;
+    align-items: center;
+  }
+
+  .about-left .about-tag {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--purple2);
+    margin-bottom: 14px;
+  }
+
+  .about-left h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+
+  .about-left p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.72;
+    margin-bottom: 16px;
+  }
+
+  .about-left p strong {
+    color: var(--white);
+    font-weight: 600;
+  }
+
+  .about-stats {
+    display: flex;
+    gap: 28px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+
+  .about-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .about-stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.06em;
+    color: var(--purple2);
+    line-height: 1;
+  }
+
+  .about-stat-label {
+    font-size: 0.68rem;
+    color: #555;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .about-right {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .about-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 22px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    transition: border-color 0.2s;
+  }
+
+  .about-card:hover { border-color: var(--purple); }
+
+  .about-card-icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .about-card-title {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .about-card-desc {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  @media (max-width: 680px) {
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+
   /* ── SERVICES ── */
   #services { background: var(--dark); }
 
@@ -859,6 +969,7 @@
   </button>
   <ul class="nav-links">
     <li><a href="qr.html">Connect</a></li>
+    <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#portfolio">Work</a></li>
     <li><a href="#contact" class="nav-cta">Start a Project</a></li>
@@ -868,6 +979,7 @@
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="qr.html" onclick="toggleMenu()">Connect</a>
+  <a href="#about" onclick="toggleMenu()">About</a>
   <a href="#services" onclick="toggleMenu()">Services</a>
   <a href="#portfolio" onclick="toggleMenu()">Work</a>
   <a href="#contact" class="mobile-cta" onclick="toggleMenu()">Start a Project</a>
@@ -888,6 +1000,61 @@
     <a href="#portfolio" class="btn-ghost">See the Work</a>
   </div>
   <p class="hero-tagline">Built from the block. Designed for legacy.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-eyebrow">Who We Are</p>
+  <h2 class="section-title">Built From the Block.</h2>
+  <div class="about-grid">
+
+    <div class="about-left">
+      <p><strong>Dominion House</strong> is a creative studio built for people who move different. We make brands look the part — from the logo to the landing page to the motion content that stops the scroll.</p>
+      <p>We started because too many real ones were out here with fire ideas and basic visuals. That ends here. Whether you're a food brand, an artist, a clothing line, or just building something from scratch — we build it with you.</p>
+      <p>No fluff. No agency runaround. Just clean work, fast turnaround, and prices that actually make sense.</p>
+      <div class="about-stats">
+        <div class="about-stat">
+          <span class="about-stat-num">10+</span>
+          <span class="about-stat-label">Projects Done</span>
+        </div>
+        <div class="about-stat">
+          <span class="about-stat-num">24H</span>
+          <span class="about-stat-label">Avg Response</span>
+        </div>
+        <div class="about-stat">
+          <span class="about-stat-num">100%</span>
+          <span class="about-stat-label">Independent</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-right">
+      <div class="about-card">
+        <div class="about-card-icon">🎯</div>
+        <div>
+          <div class="about-card-title">We Build for Real People</div>
+          <div class="about-card-desc">No corporate clients. We work with entrepreneurs, artists, and local brands who are serious about growing.</div>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">⚡</div>
+        <div>
+          <div class="about-card-title">Fast Turnaround</div>
+          <div class="about-card-desc">Most projects delivered in days, not weeks. We keep it moving so you can keep it moving.</div>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">💜</div>
+        <div>
+          <div class="about-card-title">Quality at a Real Price</div>
+          <div class="about-card-desc">Agency-level visuals without the agency price tag. Built from the block, designed for legacy.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </section>
 
 <div class="divider"></div>
@@ -984,24 +1151,24 @@
     <div class="dl-inner">
       <!-- LEFT: info -->
       <div class="dl-left">
-        <div class="dl-client-tag">Client Project</div>
+        <div class="dl-client-tag">DH Brand</div>
         <div class="dl-brand-name">Domien</div>
         <div class="dl-brand-sub">— Luxe —</div>
         <p class="dl-desc">
-          A luxury streetwear brand built on craft and identity. Full digital presence in the works — coming soon.
+          A Dominion House luxury streetwear brand. Built in-house from the ground up — identity, site, and everything in between. Dropping soon.
         </p>
         <div class="dl-details">
           <div class="dl-detail-row">
             <span class="dl-detail-label">Type</span>
-            <span class="dl-detail-val">Brand Identity · E-commerce</span>
+            <span class="dl-detail-val">DH Sub-Brand · Streetwear</span>
           </div>
           <div class="dl-detail-row">
             <span class="dl-detail-label">Status</span>
             <span class="dl-detail-val">In development</span>
           </div>
           <div class="dl-detail-row">
-            <span class="dl-detail-label">Deliverable</span>
-            <span class="dl-detail-val">Full site + brand visuals</span>
+            <span class="dl-detail-label">Includes</span>
+            <span class="dl-detail-val">Identity · E-com · Visuals</span>
           </div>
         </div>
         <a href="#contact" class="dl-cta">Work with us ↗</a>
