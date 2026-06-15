@@ -549,106 +549,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 40px 32px;
+    padding: 32px 24px;
     position: relative;
     overflow: hidden;
+    background: #06060c;
   }
 
-  .dl-logo-showcase {
-    position: relative;
+  .dl-svg-logo {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-  }
-
-  /* SVG heron logo recreation */
-  .dl-logo-svg-wrap {
-    width: 220px;
-    height: 220px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .dl-logo-ring {
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    border: 1px solid rgba(124,58,237,0.2);
-    animation: dl-spin 20s linear infinite;
-  }
-
-  .dl-logo-ring::before {
-    content: '';
-    position: absolute;
-    top: -3px; left: 50%;
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: #7c3aed;
-    transform: translateX(-50%);
-  }
-
-  @keyframes dl-spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-
-  .dl-logo-inner {
-    text-align: center;
-    z-index: 1;
-  }
-
-  /* DL monogram */
-  .dl-monogram {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 5.5rem;
-    line-height: 1;
-    letter-spacing: -0.02em;
-    background: linear-gradient(160deg, #b0b0c4 0%, #7c3aed 45%, #9d5cf6 70%, #c0c0cc 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    position: relative;
-  }
-
-  .dl-monogram-sub {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.75rem;
-    letter-spacing: 0.4em;
-    color: #7c3aed;
-    margin-top: 2px;
-  }
-
-  /* Vertical lines decoration (echoing the brand's "pillar" motif) */
-  .dl-pillars {
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 5px;
-    height: 50px;
-    align-items: flex-end;
-    opacity: 0.35;
-  }
-
-  .dl-pillar {
-    width: 4px;
-    background: linear-gradient(to bottom, #7c3aed, transparent);
-    border-radius: 2px 2px 0 0;
-  }
-
-  .dl-diamond {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%) rotate(45deg);
-    width: 40px;
-    height: 40px;
-    border: 1px solid rgba(124,58,237,0.3);
+    max-width: 340px;
+    height: auto;
+    filter: drop-shadow(0 0 20px rgba(124,58,237,0.35));
   }
 
   /* Stitch dots on border */
@@ -692,9 +603,8 @@
   @media (max-width: 680px) {
     .dl-inner { grid-template-columns: 1fr; }
     .dl-left { padding: 36px 24px; border-right: none; border-bottom: 1px solid rgba(124,58,237,0.15); }
-    .dl-right { padding: 32px 24px; }
-    .dl-logo-svg-wrap { width: 160px; height: 160px; }
-    .dl-monogram { font-size: 4rem; }
+    .dl-right { padding: 24px 20px; }
+    .dl-svg-logo { max-width: 260px; }
   }
 
   /* ── CONTACT ── */
@@ -1097,30 +1007,218 @@
         <a href="#contact" class="dl-cta">Work with us ↗</a>
       </div>
 
-      <!-- RIGHT: logo showcase -->
+      <!-- RIGHT: actual logo SVG -->
       <div class="dl-right">
-        <div class="dl-logo-showcase">
-          <!-- Pillar decoration (echoing brand motif) -->
-          <div class="dl-pillars">
-            <div class="dl-pillar" style="height:45px;background:linear-gradient(to bottom,#7c3aed,transparent)"></div>
-            <div class="dl-pillar" style="height:30px;background:linear-gradient(to bottom,#9d5cf6,transparent)"></div>
-            <div class="dl-pillar" style="height:50px;background:linear-gradient(to bottom,#5b21b6,transparent)"></div>
-          </div>
+        <svg viewBox="0 0 400 460" xmlns="http://www.w3.org/2000/svg" class="dl-svg-logo" aria-label="Domien Luxe logo">
+          <defs>
+            <linearGradient id="chromeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%"   stop-color="#dcdce8"/>
+              <stop offset="50%"  stop-color="#a8a8bc"/>
+              <stop offset="100%" stop-color="#d0d0e0"/>
+            </linearGradient>
+            <linearGradient id="heronCream" x1="0%" y1="0%" x2="60%" y2="100%">
+              <stop offset="0%"   stop-color="#e8e8f0"/>
+              <stop offset="40%"  stop-color="#c8c8d8"/>
+              <stop offset="100%" stop-color="#a0a0b4"/>
+            </linearGradient>
+            <linearGradient id="purpleDeep" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%"   stop-color="#5b21b6"/>
+              <stop offset="100%" stop-color="#7c3aed"/>
+            </linearGradient>
+            <linearGradient id="pillarL" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%"   stop-color="#7c3aed"/>
+              <stop offset="100%" stop-color="#3b1279"/>
+            </linearGradient>
+            <linearGradient id="pillarR" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%"   stop-color="#9d5cf6"/>
+              <stop offset="100%" stop-color="#5b21b6"/>
+            </linearGradient>
+          </defs>
 
-          <div class="dl-logo-svg-wrap">
-            <div class="dl-logo-ring"></div>
-            <div class="dl-logo-inner">
-              <div class="dl-monogram">DL</div>
-              <div class="dl-monogram-sub">DOMIEN LUXE</div>
-            </div>
-          </div>
+          <!-- ══ HEART SHAPE BACKGROUND ══ -->
+          <!-- Heart: two bumps at top, point at bottom center ~y=310 -->
+          <path d="
+            M200 295
+            C200 295 90 230 90 155
+            C90 115 118 88 155 88
+            C174 88 192 98 200 112
+            C208 98 226 88 245 88
+            C282 88 310 115 310 155
+            C310 230 200 295 200 295 Z"
+            fill="#1a0f2e" opacity="0.85"/>
+          <!-- Heart outline, slightly lighter -->
+          <path d="
+            M200 295
+            C200 295 90 230 90 155
+            C90 115 118 88 155 88
+            C174 88 192 98 200 112
+            C208 98 226 88 245 88
+            C282 88 310 115 310 155
+            C310 230 200 295 200 295 Z"
+            fill="none" stroke="#3a1a60" stroke-width="1.5" opacity="0.7"/>
 
-          <!-- Diamond shape at bottom (from logo) -->
-          <div style="position:relative;width:60px;height:60px;display:flex;align-items:center;justify-content:center;">
-            <div class="dl-diamond"></div>
-            <span style="font-family:'Bebas Neue',sans-serif;font-size:0.6rem;letter-spacing:0.25em;color:#555;z-index:1;">LUXE</span>
-          </div>
-        </div>
+          <!-- Arc line on right side (geometric detail from logo) -->
+          <path d="M270 108 Q330 155 330 200 Q330 250 285 280"
+                fill="none" stroke="#4c1d95" stroke-width="1" opacity="0.5"
+                stroke-dasharray="1,0"/>
+          <!-- X marks on arc -->
+          <text x="325" y="178" font-size="9" fill="#5b21b6" opacity="0.6" font-family="sans-serif">×</text>
+          <text x="298" y="258" font-size="9" fill="#5b21b6" opacity="0.6" font-family="sans-serif">×</text>
+
+          <!-- ══ VERTICAL PILLARS (left side) ══ -->
+          <!-- Tallest pillar (rightmost of the group) -->
+          <rect x="168" y="18" width="16" height="215" rx="2" fill="url(#pillarL)"/>
+          <!-- Medium pillar -->
+          <rect x="148" y="35" width="14" height="190" rx="2" fill="url(#pillarL)" opacity="0.85"/>
+          <!-- Short wide pillar (leftmost, lighter/cream colored) -->
+          <rect x="128" y="95" width="16" height="100" rx="2" fill="#ccc8d8" opacity="0.7"/>
+          <!-- Thin outline pillar (tallest, slight offset) -->
+          <rect x="186" y="10" width="6" height="200" rx="1"
+                fill="none" stroke="#9d5cf6" stroke-width="1" opacity="0.4"/>
+
+          <!-- Stitch / tick marks on left pillar group -->
+          <line x1="122" y1="100" x2="130" y2="100" stroke="#7c3aed" stroke-width="1.5" opacity="0.8"/>
+          <line x1="122" y1="112" x2="130" y2="112" stroke="#7c3aed" stroke-width="1.5" opacity="0.8"/>
+          <line x1="122" y1="124" x2="130" y2="124" stroke="#7c3aed" stroke-width="1.5" opacity="0.8"/>
+          <line x1="122" y1="136" x2="130" y2="136" stroke="#7c3aed" stroke-width="1.5" opacity="0.8"/>
+          <!-- XX marks on tall pillar -->
+          <text x="158" y="58" font-size="10" fill="#c0b8d8" opacity="0.6" font-family="sans-serif">×</text>
+          <text x="158" y="72" font-size="10" fill="#c0b8d8" opacity="0.6" font-family="sans-serif">×</text>
+
+          <!-- Dashed vertical line between pillars -->
+          <line x1="162" y1="35" x2="162" y2="230"
+                stroke="#5b21b6" stroke-width="1" stroke-dasharray="3,4" opacity="0.5"/>
+
+          <!-- ══ HERON BIRD — solid, clean vector style ══ -->
+
+          <!-- Wing/tail feathers (long, sweeping down-left) -->
+          <path d="M195 235 Q175 255 145 275 Q160 265 150 280
+                   Q170 268 165 285
+                   Q182 272 178 288
+                   Q196 274 192 290
+                   Q210 275 208 260 L195 235 Z"
+                fill="url(#heronCream)"/>
+          <!-- Purple stripe on feathers -->
+          <path d="M195 235 Q178 252 168 268 Q180 255 175 270 Q188 258 190 252 Z"
+                fill="#5b21b6" opacity="0.75"/>
+
+          <!-- Main body mass — solid cream -->
+          <path d="M192 165
+                   Q215 155 242 168
+                   Q260 180 258 215
+                   Q256 248 238 262
+                   Q220 272 200 265
+                   Q180 258 175 238
+                   Q168 218 175 195
+                   Q180 175 192 165 Z"
+                fill="url(#heronCream)"/>
+
+          <!-- Purple chest/shoulder patch -->
+          <path d="M215 165 Q240 170 255 192 Q258 212 250 228
+                   Q240 240 225 242 Q210 240 200 228
+                   Q192 210 200 190 Q205 172 215 165 Z"
+                fill="#5b21b6" opacity="0.88"/>
+
+          <!-- Cream overlay on lower body (feather split) -->
+          <path d="M180 215 Q195 205 212 215 Q215 235 208 255
+                   Q196 268 185 258 Q174 245 178 228 Z"
+                fill="url(#heronCream)" opacity="0.9"/>
+
+          <!-- Neck — solid cream -->
+          <path d="M210 95
+                   Q232 100 244 125
+                   Q252 148 248 170
+                   Q242 185 230 188
+                   Q218 188 212 175
+                   Q206 158 208 132
+                   Q210 110 210 95 Z"
+                fill="url(#heronCream)"/>
+
+          <!-- Purple stripe down neck -->
+          <path d="M224 102 Q238 120 240 148 Q240 168 234 182
+                   Q228 185 224 178 Q228 160 228 138 Q228 118 224 102 Z"
+                fill="#5b21b6" opacity="0.85"/>
+
+          <!-- Head — solid cream oval -->
+          <ellipse cx="232" cy="84" rx="30" ry="24" fill="url(#heronCream)"/>
+
+          <!-- Purple cap on top of head -->
+          <path d="M208 76 Q220 58 248 68 Q254 78 244 86
+                   Q235 82 220 80 Q212 80 208 76 Z"
+                fill="#5b21b6"/>
+
+          <!-- Crown feathers trailing back (long thin lines) -->
+          <path d="M210 74 Q190 68 168 72" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M210 78 Q186 72 162 76" fill="none" stroke="#5b21b6" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M210 82 Q188 78 165 83" fill="none" stroke="#4c1d95" stroke-width="1.2" stroke-linecap="round"/>
+
+          <!-- Eye -->
+          <circle cx="244" cy="80" r="6" fill="#0f0820"/>
+          <circle cx="244" cy="80" r="4" fill="#0a0614"/>
+          <circle cx="245.5" cy="78.5" r="1.5" fill="#ffffff" opacity="0.95"/>
+          <!-- Eye ring -->
+          <circle cx="244" cy="80" r="6" fill="none" stroke="#c0b8d0" stroke-width="1" opacity="0.5"/>
+
+          <!-- Beak — long, sharp, two-tone -->
+          <path d="M258 83 L326 93 L326 97 L258 90 Z" fill="#b0b0c4"/>
+          <path d="M258 83 L326 93 L324 88 L258 80 Z" fill="#d0d0e0"/>
+          <line x1="258" y1="86" x2="326" y2="95" stroke="#888898" stroke-width="0.7" opacity="0.5"/>
+
+          <!-- ══ WORDMARK: DOMIEN ══ -->
+          <text x="200" y="328"
+                font-family="Georgia, 'Times New Roman', serif"
+                font-size="62"
+                font-weight="700"
+                letter-spacing="3"
+                fill="url(#chromeGrad)"
+                text-anchor="middle">DOMIEN</text>
+
+          <!-- Stitch marks flanking wordmark -->
+          <line x1="72" y1="278" x2="72" y2="288" stroke="#6b21e8" stroke-width="2" opacity="0.8"/>
+          <line x1="72" y1="292" x2="72" y2="302" stroke="#6b21e8" stroke-width="2" opacity="0.8"/>
+          <line x1="72" y1="306" x2="72" y2="316" stroke="#6b21e8" stroke-width="2" opacity="0.8"/>
+          <line x1="72" y1="320" x2="72" y2="330" stroke="#6b21e8" stroke-width="2" opacity="0.8"/>
+          <line x1="328" y1="278" x2="328" y2="288" stroke="#6b21e8" stroke-width="2" opacity="0.8"/>
+          <line x1="328" y1="292" x2="328" y2="302" stroke="#6b21e8" stroke-width="2" opacity="0.8"/>
+          <line x1="328" y1="306" x2="328" y2="316" stroke="#6b21e8" stroke-width="2" opacity="0.8"/>
+          <!-- Red dot accent -->
+          <circle cx="332" cy="324" r="3" fill="#c8364a" opacity="0.9"/>
+
+          <!-- ══ — LUXE — ══ -->
+          <line x1="88"  y1="346" x2="148" y2="346" stroke="#7c3aed" stroke-width="1.5"/>
+          <text x="200" y="351"
+                font-family="Georgia, 'Times New Roman', serif"
+                font-size="15"
+                letter-spacing="9"
+                fill="#7c3aed"
+                text-anchor="middle">LUXE</text>
+          <line x1="252" y1="346" x2="318" y2="346" stroke="#7c3aed" stroke-width="1.5"/>
+
+          <!-- ══ DIAMOND BADGE ══ -->
+          <!-- Vertical dashed line down -->
+          <line x1="200" y1="358" x2="200" y2="400" stroke="#3a1a60" stroke-width="1" stroke-dasharray="3,3"/>
+          <!-- Left chevron -->
+          <line x1="200" y1="400" x2="158" y2="374" stroke="#5b21b6" stroke-width="1.5"/>
+          <!-- Right chevron -->
+          <line x1="200" y1="400" x2="242" y2="374" stroke="#5b21b6" stroke-width="1.5"/>
+          <!-- Bottom spike -->
+          <line x1="200" y1="400" x2="200" y2="426" stroke="#4c1d95" stroke-width="1" opacity="0.7"/>
+
+          <!-- DL monogram -->
+          <text x="200" y="394"
+                font-family="Georgia, 'Times New Roman', serif"
+                font-size="20"
+                font-weight="700"
+                fill="#c0c0d8"
+                text-anchor="middle"
+                letter-spacing="-1">DL</text>
+
+          <!-- Bottom rune / crosshatch mark -->
+          <line x1="196" y1="432" x2="204" y2="432" stroke="#7c3aed" stroke-width="1.5" opacity="0.8"/>
+          <line x1="200" y1="428" x2="200" y2="436" stroke="#7c3aed" stroke-width="1.5" opacity="0.8"/>
+          <line x1="197" y1="429" x2="203" y2="435" stroke="#7c3aed" stroke-width="1" opacity="0.5"/>
+          <line x1="203" y1="429" x2="197" y2="435" stroke="#7c3aed" stroke-width="1" opacity="0.5"/>
+        </svg>
       </div>
     </div>
   </div>
