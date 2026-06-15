@@ -615,17 +615,47 @@
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; animation: none !important; }
   }
+
+  /* ── WEB / GRID BACKGROUND ── */
+  #bg-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  #bg-grid {
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(107,33,232,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(107,33,232,0.06) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* make sure all content sits above the background */
+  nav, section, footer, .divider, .mobile-menu {
+    position: relative;
+    z-index: 1;
+  }
+
 </style>
 </head>
-<body 
+<body>
 <script>
-//Only show intro once per visit
-  If (sessionStorage.getItem('introSeen')) {
+  // Only show intro once per visit
+  if (!sessionStorage.getItem('introSeen')) {
     sessionStorage.setItem('introSeen', 'true');
-    window.location.href = 'dominion-house-intro.html';
-  }>
+    window.location.href = 'dominion-house-intro-final.html';
+  }
 </script>
- >
+
+<!-- Background web + grid -->
+<div id="bg-grid"></div>
+<canvas id="bg-canvas"></canvas>
 
 <!-- NAV -->
 <nav>
@@ -855,6 +885,75 @@
       a.style.color = a.getAttribute('href') === '#' + current ? '#f0f0f0' : '';
     });
   });
+</script>
+
+
+<script>
+  /* ── SPIDER WEB BACKGROUND ── */
+  const bgCanvas = document.getElementById('bg-canvas');
+  const bgCtx = bgCanvas.getContext('2d');
+  let bW, bH, bgNodes = [];
+
+  function bgResize() {
+    bW = bgCanvas.width  = window.innerWidth;
+    bH = bgCanvas.height = window.innerHeight;
+  }
+  bgResize();
+  window.addEventListener('resize', bgResize);
+
+  function createBgNodes(count) {
+    bgNodes = [];
+    for (let i = 0; i < count; i++) {
+      bgNodes.push({
+        x: Math.random() * bW,
+        y: Math.random() * bH,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        r: Math.random() * 1.4 + 0.4,
+        pulse: Math.random() * Math.PI * 2
+      });
+    }
+  }
+  createBgNodes(60);
+
+  function drawBgWeb() {
+    bgCtx.clearRect(0, 0, bW, bH);
+
+    bgNodes.forEach(n => {
+      n.x += n.vx; n.y += n.vy;
+      n.pulse += 0.015;
+      if (n.x < 0 || n.x > bW) n.vx *= -1;
+      if (n.y < 0 || n.y > bH) n.vy *= -1;
+    });
+
+    for (let i = 0; i < bgNodes.length; i++) {
+      for (let j = i + 1; j < bgNodes.length; j++) {
+        const dx = bgNodes[j].x - bgNodes[i].x;
+        const dy = bgNodes[j].y - bgNodes[i].y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 130) {
+          const alpha = (1 - dist / 130) * 0.25;
+          bgCtx.beginPath();
+          bgCtx.strokeStyle = `rgba(108, 33, 232, ${alpha})`;
+          bgCtx.lineWidth = 0.5;
+          bgCtx.moveTo(bgNodes[i].x, bgNodes[i].y);
+          bgCtx.lineTo(bgNodes[j].x, bgNodes[j].y);
+          bgCtx.stroke();
+        }
+      }
+    }
+
+    bgNodes.forEach(n => {
+      const p = (Math.sin(n.pulse) * 0.5 + 0.5);
+      bgCtx.beginPath();
+      bgCtx.arc(n.x, n.y, n.r + p * 0.6, 0, Math.PI * 2);
+      bgCtx.fillStyle = `rgba(157, 95, 245, 0.5)`;
+      bgCtx.fill();
+    });
+
+    requestAnimationFrame(drawBgWeb);
+  }
+  drawBgWeb();
 </script>
 
 </body>
